@@ -1,0 +1,358 @@
+/*  ========================================================================  *\
+
+    S T Y L E . C S S
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    A weboldal stíluslapja.
+    A stíluslap a weboldal kinézetét és elrendezését határozza meg.
+
+\*  ========================================================================  */
+
+body {
+    width:             100%;
+    height:            100%;
+    margin:            0;
+    padding:           0;
+
+    background-color:  beige;
+
+    font-size:         1rem;
+}
+
+
+/*  ========================================================================  *\
+
+    H E A D E R
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    A fejléc és a lábléc stíluslapja.
+    A fejléc és a lábléc a weboldal tetején és alján található.
+    A fejléc tartalmazza a logót és a menüt, 
+    míg a lábléc az oldal alján található.
+    A fejléc és a lábléc színét, méretét és elrendezését határozza meg.
+
+\*  ========================================================================  */
+
+header {
+    position:    relative;
+    top:         0;
+    left:        0;
+
+    width:       calc(100% - 4vw);
+    height:      10vh;
+    margin:      0;
+    padding:     0vh 2vw 0vh 2vw;
+    background:  limegreen;
+}
+
+    .header-logo {
+        position:             absolute;
+        top:                  0;
+        left:                 2vw;
+
+        width:                10vh;
+        height:               10vh;
+        margin:               0;
+        padding:              0;
+
+        background-image:     url('../images/logo.gif');
+        background-size:      cover;
+        background-repeat:    no-repeat;
+        background-position:  center;
+        background-color:     transparent;
+
+        text-align:           left;
+
+        font-family:          "Oxygen", sans-serif;
+        font-size:            clamp(0.5rem, 0.75vw, 0.75rem);
+        font-weight:          normal;
+        letter-spacing:       clamp(0.05rem, 0.1vw, 0.1rem);
+        line-height:          2vh;
+        color:                wheat;
+        text-shadow:          0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 1);
+    }
+
+    .header-text {
+        position:        absolute;
+        top:             0;
+        left:            calc(10vh + 2vw);
+
+        width:           calc(100% - 20vh - 4vw);
+        height:          auto;
+        margin:          1.5vh;
+        padding:         0;
+    }
+
+        h1{
+        text-transform:  uppercase;
+
+        font-family:     "Oxygen", sans-serif;
+        font-size:       clamp(1rem, 2vw, 2rem);
+        font-weight:     bold;
+        color:           white;
+        letter-spacing:  clamp(0.1rem, 0.2vw, 0.2rem);
+        line-height:     clamp(2vh, 5vw, 7vh);
+        text-shadow:     0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 1);
+    }
+
+    /* ====== MENÜ STÍLUSOK ====== */
+    .menu-button {
+        position:          absolute;
+        top:               0;
+        right:             0;
+
+        display:           inline-block;
+        cursor:            pointer;
+
+        width:             calc(10vh - 2rem);
+        height:            calc(10vh - 2rem);
+        margin:            0;
+        padding:           1rem;
+
+        background-color:  limegreen;
+        transition:        background-color 0.5s;
+    }
+
+        .menu-button:hover {background-color:  lime;}
+
+        .oneline, .twoline, .threeline {
+            width:             2.5rem;
+            height:            0.25rem;
+            background-color:  #333;
+            margin:            0.5rem 0;
+            transition:        0.4s;
+        }
+        
+            .change .oneline {transform: translate(0, 0.75rem) rotate(-45deg);}
+            .change .twoline {opacity: 0;}
+            .change .threeline {transform: translate(0, -0.75rem) rotate(45deg);}
+
+.menu-content {
+    position:          fixed;
+    top:               10vh;
+    left:              0;
+
+    display:           flex;
+    flex-direction:    column;
+    align-items:       center;
+    justify-content:   center;
+
+    background-color:  limegreen;
+
+    width:             100%;
+    height:            0vh;
+    margin:            0;
+    padding:           0;
+    border-radius:     0 0 0 0;
+    
+    overflow:          hidden;
+    transition:        height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+    text-transform:    uppercase;
+    text-align:        center;
+    text-decoration:   none;
+
+    font-family:       "Oxygen", sans-serif;
+    font-size:         clamp(1rem, 2vw, 2rem);
+    font-weight:       bold;
+    color:             black;
+    letter-spacing:    clamp(0.5rem, 1vw, 1rem);
+    line-height:       5vh;
+
+    z-index:           1000;
+}
+
+    .menu-content.open-close {
+        height:   80vh;
+        opacity:  1;
+    }
+
+    /* ====== FŐGOMBOK ====== */
+    .menu-item {
+        padding:        1rem 2rem 1rem 2rem;
+        cursor:         pointer;
+        font-size:      1.5rem;
+        border-bottom:  0.1rem solid white;
+        transition:     color 0.8s;
+    }
+
+        .menu-item:hover {
+            color:  lightgray;
+        }
+
+/*  ========================================================================  *\
+
+    M A I N   C O N T E N T
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    A fő tartalom stíluslapja.
+    A fő tartalom a weboldal középső részén található.
+    A fő tartalom színét, méretét és elrendezését határozza meg.
+    A fő tartalom tartalmazza a weboldal fő tartalmát, mint például a szöveget, 
+    képeket és egyéb elemeket.
+
+\*  ========================================================================  */
+
+main {
+    position:         relative;
+    top:              0;
+    left:             0;
+
+    width:            100%;
+    height:           80vh;
+    margin:           0;
+    padding:          0;
+
+    display:          flex;
+    justify-content:  center;
+    align-items:      center;
+}
+    
+        .main-content {
+            display:          flex;
+            flex-direction:   column;
+            justify-content:  center;
+            align-items:      center;
+            text-align:       center;
+
+            width:            100%;
+            height:           100%;
+            margin:           0;
+            padding:          0;
+        }
+
+            h2 {
+                font-family:     "Oxygen", sans-serif;
+                font-size:       clamp(1rem, 2vw, 2rem);
+                font-weight:     bold;
+                color:           black;
+                letter-spacing:  0.1rem;
+                line-height:     3vh;
+            }
+
+            p, li {
+                font-family:     "Oxygen", sans-serif;
+                font-size:       clamp(0.75rem, 1vw, 1rem);
+                font-weight:     normal;
+                color:           black;
+                letter-spacing:  0.1rem;
+                line-height:     3vh;
+            }
+
+        .page-container {
+            display:          flex;
+            flex-direction:   column;
+            justify-content:  center;
+            align-items:      center;
+
+            width:            auto;
+            height:           auto;
+            margin:           0;
+            padding:          3vh 3vw 3vh 3vw;
+        }
+
+        .canvas-container {
+            display:              flex;
+            flex-direction:       column;
+            justify-content:      center;
+            align-items:          center;
+
+            width:                100%;
+            height:               100%;
+            margin:               0;
+            padding:              0;
+
+            background-color:     transparent;
+
+            background-image:     url('../images/canvas-background.webp');
+            background-size:      cover;
+            background-repeat:    no-repeat;
+            background-position:  center;
+            background-color:     transparent;
+        }
+
+        /* Hibaüzenet stílus */
+        .error-message {
+            height:         auto;
+            width:          auto;
+            margin:         0;
+            padding:        2rem;
+
+            background:     #ffdddd;
+            border:         0.1rem solid red;
+            border-radius:  0.5rem;
+            box-shadow:     0 0 1rem rgba(0, 0, 0, 0.5);
+
+            text-align:     center;
+        }
+
+            .error-message h2 {
+                font-family:     "Oxygen", sans-serif;
+                font-weight:     bold;
+                text-transform:  uppercase;
+                font-size:       Clamp(1rem, 2vw, 2rem);
+                color:           red;
+            }
+
+            .error-message p {
+                font-family:  "Oxygen", sans-serif;
+                font-weight:  normal;
+                font-size:    Clamp(0.75rem, 1vw, 1rem);
+                color:        black;
+            }
+
+
+/*  ========================================================================  *\
+
+    F O O T E R
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    A lábléc stíluslapja.
+    A lábléc a weboldal alján található.
+    A lábléc tartalmazza a weboldal készítőjének nevét és a weboldal címét.
+    A lábléc színét, méretét és elrendezését határozza meg.
+    A lábléc tartalmazza a weboldal készítőjének nevét és a weboldal címét.
+    A lábléc színét, méretét és elrendezését határozza meg.
+
+\*  ========================================================================  */
+
+footer {
+    position:    relative;
+    top:         0;
+    left:        0;
+
+    text-align:  right;
+
+    width:       calc(100% - 6vw);
+    height:      10vh;
+    margin:      0;
+    padding:     0vh 3vw 0vh 3vw;
+    background:  limegreen;
+}
+
+    .footer-text, 
+    .VMJ-text {
+        text-decoration:  none;
+        text-transform:   uppercase;
+
+        font-family:      "Oxygen", sans-serif;
+        font-size:        clamp(0.75rem, 1vw, 1rem);
+        font-weight:      bold;
+        color:            white;
+        letter-spacing:   clamp(0.1rem, 0.2vw, 0.2rem);
+        line-height:      10vh;
+        text-shadow:      0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 1);
+    }
+
+    .VMJ-text:hover {
+        cursor:           pointer;
+        text-decoration:  none;
+        text-transform:   uppercase;
+
+        color:            lightgray;
+    }
+
+
+/*  ========================================================================  *\
+
+    E N D   O F   S T Y L E . C S S
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    A fájl vége.
+
+\*  ========================================================================  */
