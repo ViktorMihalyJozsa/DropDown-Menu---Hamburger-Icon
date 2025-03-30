@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DrorDown Menu & Hamburger Icon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Viktor M Jozsa">
+    <meta name="description" 
+          content="Egy egyszerű HTML és CSS alapú weboldal, amely bemutatja a DrorDown menüt és a hamburger ikont.">
+    <meta name="keywords" 
+          content="HTML, CSS, JavaScript, DrorDown Menu, Hamburger Icon, Responsive Design">
+    <link rel="icon" type="image/webp" href="images/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" 
+          integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+    <style>
+        /* ====== ALAP STÍLUSOK ====== */
+        body {
+            width:             100%;
+            height:            100%;
+            margin:            0;
+            padding:           0;
+
+            background-color:  beige;
+
+            font-size:         1rem;
+        }
+
+        header, footer {
+            position:    relative;
+
+            width:       calc(100% - 4vw);
+            height:      10vh;
+            margin:      0;
+            padding:     0vh 2vw 0vh 2vw;
+            background:  limegreen;
+        }
+
+            .header-logo {
+                position:             absolute;
+                top:                  0;
+                left:                 2vw;
+
+                width:                10vh;
+                height:               10vh;
+                margin:               0;
+                padding:              0;
+
+                background-image:     url('images/logo.gif');
+                background-size:      cover;
+                background-repeat:    no-repeat;
+                background-position:  center;
+                background-color:     transparent;
+
+                text-align:           left;
+
+                font-family:          "Oxygen", sans-serif;
+                font-size:            clamp(0.5rem, 0.75vw, 0.75rem);
+                font-weight:          normal;
+                letter-spacing:       clamp(0.05rem, 0.1vw, 0.1rem);
+                line-height:          2vh;
+                color:                wheat;
+                text-shadow:          0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 1);
+            }
+
+            .header-text {
+                position:        absolute;
+                top:             0;
+                left:            calc(10vh + 2vw);
+
+                width:           calc(100% - 20vh - 4vw);
+                height:          auto;
+                margin:          1.5vh;
+                padding:         0;
+            }
+
+                h1{
+                text-transform:  uppercase;
+
+                font-family:     "Oxygen", sans-serif;
+                font-size:       clamp(1rem, 2vw, 2rem);
+                font-weight:     bold;
+                color:           white;
+                letter-spacing:  clamp(0.2rem, 0.2vw, 0.4rem);
+                line-height:     clamp(2vh, 5vw, 7vh);
+                text-shadow:     0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 1);
+            }
+
+            /* ====== MENÜ STÍLUSOK ====== */
+            .menu-button {
+                position:          absolute;
+                top:               0;
+                right:             0;
+
+                display:           inline-block;
+                cursor:            pointer;
+
+                width:             calc(10vh - 2rem);
+                height:            calc(10vh - 2rem);
+                margin:            0;
+                padding:           1rem;
+
+                background-color:  limegreen;
+                transition:        background-color 0.5s;
+            }
+
+                .menu-button:hover {background-color:  lime;}
+
+                .oneline, .twoline, .threeline {
+                    width:             2.5rem;
+                    height:            0.25rem;
+                    background-color:  #333;
+                    margin:            0.5rem 0;
+                    transition:        0.4s;
+                }
+                
+                    .change .oneline {transform: translate(0, 0.75rem) rotate(-45deg);}
+                    .change .twoline {opacity: 0;}
+                    .change .threeline {transform: translate(0, -0.75rem) rotate(45deg);}
+
+        .menu-content {
+            position:          fixed;
+            top:               10vh;
+            left:              0;
+
+            display:           flex;
+            flex-direction:    column;
+            align-items:       center;
+            justify-content:   center;
+
+            background-color:  limegreen;
+
+            width:             100%;
+            height:            0vh;
+            margin:            0;
+            padding:           0;
+            border-radius:     0 0 0 0;
+            
+            overflow:          hidden;
+            transition:        height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+            text-transform:    uppercase;
+            text-align:        center;
+            text-decoration:   none;
+
+            font-family:       "Oxygen", sans-serif;
+            font-size:         clamp(1rem, 2vw, 2rem);
+            font-weight:       bold;
+            color:             black;
+            letter-spacing:    clamp(0.5rem, 1vw, 1rem);
+            line-height:       5vh;
+
+            z-index:           1000;
+        }
+
+            .menu-content.open-close {
+                height:   80vh;
+                opacity:  1;
+            }
+
+            /* ====== FŐGOMBOK ====== */
+            .menu-item {
+                padding:        1rem 2rem 1rem 2rem;
+                cursor:         pointer;
+                font-size:      1.5rem;
+                border-bottom:  0.1rem solid white;
+                transition:     color 0.8s;
+            }
+
+                .menu-item:hover {
+                    color:  lightgray;
+                }
+
+        main {
+            position:         relative;
+            top:              0;
+            left:             0;
+
+            width:            100%;
+            height:           80vh;
+            margin:           0;
+            padding:          0;
+
+            display:          flex;
+            justify-content:  center;
+            align-items:      center;
+        }
+            
+                .main-content {
+                    display:          flex;
+                    flex-direction:   column;
+                    justify-content:  center;
+                    align-items:      center;
+                    text-align:       center;
+
+                    width:            100%;
+                    height:           100%;
+                    margin:           0;
+                    padding:          0;
+                }
+
+                    h2 {
+                        font-family:     "Oxygen", sans-serif;
+                        font-size:       clamp(1rem, 2vw, 2rem);
+                        font-weight:     bold;
+                        color:           black;
+                        letter-spacing:  0.1rem;
+                        line-height:     5vh;
+                    }
+
+                    p {
+                        font-family:     "Oxygen", sans-serif;
+                        font-size:       clamp(0.75rem, 1vw, 1rem);
+                        font-weight:     normal;
+                        color:           black;
+                        letter-spacing:  0.1rem;
+                        line-height:     5vh;
+                    }
+
+                .page-container {
+                    display:          flex;
+                    flex-direction:   column;
+                    justify-content:  center;
+                    align-items:      center;
+
+                    width:            auto;
+                    height:           auto;
+                    margin:           0;
+                    padding:          2vh 2vw 2vh 2vw;
+                }
+
+                .canvas-container {
+                    display:              flex;
+                    flex-direction:       column;
+                    justify-content:      center;
+                    align-items:          center;
+
+                    width:                100%;
+                    height:               100%;
+                    margin:               0;
+                    padding:              0;
+
+                    background-color:     transparent;
+
+                    background-image:     url('images/canvas-background.webp');
+                    background-size:      cover;
+                    background-repeat:    no-repeat;
+                    background-position:  center;
+                    background-color:     transparent;
+                }
+
+                /* Hibaüzenet stílus */
+                .error-message {
+                    height:         auto;
+                    width:          auto;
+                    margin:         0;
+                    padding:        2rem;
+
+                    background:     #ffdddd;
+                    border:         0.1rem solid red;
+                    border-radius:  0.5rem;
+                    box-shadow:     0 0 1rem rgba(0, 0, 0, 0.5);
+
+                    text-align:     center;
+                }
+
+                    .error-message h2 {
+                        font-family:     "Oxygen", sans-serif;
+                        font-weight:     bold;
+                        text-transform:  uppercase;
+                        font-size:       Clamp(1rem, 2vw, 2rem);
+                        color:           red;
+                    }
+
+                    .error-message p {
+                        font-family:  "Oxygen", sans-serif;
+                        font-weight:  normal;
+                        font-size:    Clamp(0.75rem, 1vw, 1rem);
+                        color:        black;
+                    }
+
+        footer {
+            text-align:  right;
+        }
+
+            .footer-text, 
+            .VMJ-text {
+                text-decoration:  none;
+                text-transform:   uppercase;
+
+                font-family:      "Oxygen", sans-serif;
+                font-size:        clamp(0.75rem, 1vw, 1rem);
+                font-weight:      bold;
+                color:            white;
+                letter-spacing:   clamp(0.1rem, 0.2vw, 0.2rem);
+                line-height:      10vh;
+                text-shadow:      0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 1);
+            }
+
+            .VMJ-text:hover {
+                cursor:           pointer;
+                text-decoration:  none;
+                text-transform:   uppercase;
+
+                color:            lightgray;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo" aria-label="Header Logo">VMJ</div>
+        <span class="header-text"><h1>DrorDown Menu & The Hamburger Icon</h1></span>
+        <!-- Hamburger menü -->
+        <menu id="menu-button" class="menu-button" onclick="toggleNav(this)">
+            <div class="oneline"></div>
+            <div class="twoline"></div>
+            <div class="threeline"></div>
+        </menu>
+        <!-- Menü tartalom -->
+        <div id="menu-content" class="menu-content">
+            <div id="menu-inner-content">
+                <!-- Alap menü elemek -->
+                <div class="menu-item" onclick="loadContent('pages/home.html')">Home</div>
+                <div class="menu-item" onclick="loadContent('pages/canvas.html')">Canvas</div>
+                <div class="menu-item" onclick="loadContent('pages/levels.html')">Levels</div>
+                <div class="menu-item" onclick="loadContent('pages/about.html')">About</div>
+                <div class="menu-item" onclick="loadContent('error')">ERROR</div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="main-content" class="main-content">
+            <!-- Ezt a szöveget eltüntetjük, miután betöltjük az oldalt -->
+        </div>
+    </main>
+    <footer>
+        <span class="footer-text">Best regards from:
+            <a href="https://viktormihalyjozsa.com/" class="VMJ-text" title="Dear Page" target="_blank">VMJ</a>
+            ~ 2025
+        </span>
+    </footer>
+<script>
+// Automatikusan betölti az alapértelmezett tartalmat, amikor az oldal betöltődik
+window.onload = function() {
+    loadContent('pages/home.html');  // Kezdőlap automatikus betöltése
+}
+// Toggle függvény a hamburger menü megnyitásához és bezárásához
+function toggleNav(x) {
+    const menuContent = document.getElementById("menu-content");
+
+    console.log("toggleNav hívás");
+
+    // Ha hibaüzenet van, töröljük az error osztályt és visszaállítjuk az alapértelmezett menüt
+    if (menuContent.classList.contains("error")) {
+        menuContent.classList.remove("error");
+    }
+
+    // Menü nyitása vagy zárása
+    if (menuContent.classList.contains("open-close")) {
+        menuContent.classList.remove("open-close");
+        x.classList.remove("change");
+        console.log("Menü zárva");
+    } else {
+        menuContent.classList.add("open-close");
+        x.classList.add("change");
+        console.log("Menü nyitva");
+    }
+}
+// A menü gombokkal hivatkozott oldalak dinamikus betöltése
+function loadContent(url) {
+    const mainContent = document.getElementById("main-content");  // Fő tartalom
+    const menuContent = document.getElementById("menu-content");  // Menü tartalom
+    const menuButton = document.getElementById("menu-button");    // Hamburger menü gomb
+
+    console.log("loadContent hívás: " + url);  // URL kiírása a konzolra
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`ERROR: ${response.status} - ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            // A betöltött tartalom megjelenítése a fő tartalomban
+            mainContent.innerHTML = data;  // Betöltött tartalom megjelenítése
+            console.log("Betöltött tartalom:", data);  // Betöltött tartalom kiírása a konzolra
+
+            // Menü automatikus bezárása
+            menuContent.classList.remove("open-close");
+            menuButton.classList.remove("change");
+            console.log("Menü automatikusan bezárva");
+        })
+        .catch(error => {  // Hiba kezelése
+            console.error("Betöltési hiba:", error);  // Hibaüzenet a konzolon
+
+            // Hibaüzenet megjelenítése a fő tartalomban
+            mainContent.innerHTML = `
+                <div class="error-message">
+                    <h2>An error occurred!</h2>
+                    <p><strong>${error.message}</strong></p>
+                    <p>Please try again later.</p>
+                </div>
+            `;
+
+            // Menü automatikus bezárása hiba esetén
+            menuContent.classList.remove("open-close");
+            menuButton.classList.remove("change");
+            console.log("Menü automatikusan bezárva hiba esetén");
+        });
+}
+</script>
+</body>
+</html>
